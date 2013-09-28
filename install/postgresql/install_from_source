@@ -1,0 +1,72 @@
+# from http://blog.lifebloodnetworks.com/?p=2017
+
+sudo apt-get update
+sudo apt-get install zlib1g-dev libreadline6-dev gcc make
+wget ftp://ftp.postgresql.org/pub/source/v9.2.x/postgresql-9.2.x.tar.bz2
+
+# for 9.2.4
+tar xjfv postgresql-9.2.4.tar.bz2
+cd postgresql-9.2.4/
+
+./configure
+
+# for 2 cores
+make -j 2 world
+
+sudo make install-world
+
+# Copy start up script
+sudo cp contrib/start-scripts/linux /etc/init.d/postgresql
+
+# Remove working directory
+cd ../
+rm -rf postgresql-9.2.x/
+rm postgresql-9.2.x.tar.bz2
+
+sudo useradd postgres
+
+# Create data directories
+sudo mkdir /var/lib/postgresql/
+sudo chown postgres:postgres /var/lib/postgresql/
+
+# Create data:
+sudo su - postgres -c "/usr/local/pgsql/bin/initdb -D /var/lib/postgresql/"
+
+# Create configuration directory
+sudo mkdir /etc/postgresql/
+sudo chown postgres:postgres /etc/postgresql/
+
+# Move configuration
+sudo mv /var/lib/postgresql/postgresql.conf /var/lib/postgresql/pg_hba.conf /var/lib/postgresql/pg_ident.conf /etc/postgresql/
+
+# Open postgresql.conf
+sudo nano /etc/postgresql/postgresql.conf
+
+# change it
+# data_directory = '/var/lib/postgresql/'
+# external_pid_file = '/var/run/postgresql.pid'
+
+# open start up script
+sudo nano /etc/init.d/postgresql
+
+# change it
+# PGDATA="/etc/postgresql/"
+# PGLOG="/var/log/postgresql.log"
+
+# Under ## EDIT FROM HERE add:
+# PGGROUP=postgres
+# PGPID="/var/run/postgresql.pid"
+
+# Above su - $PGUSER -c "$DAEMON -D '$PGDATA' &" >>$PGLOG 2>&1, under start add
+# touch $PGPID
+# chown $PGUSER:$PGGROUP $PGPID
+
+# Under su - $PGUSER -c "$PGCTL stop -D '$PGDATA' -s -m fast", under stop) add
+# rm $PGPID
+
+# Make start up script executable
+sudo chmod +x /etc/init.d/postgresql
+sudo update-rc.d postgresql defaults
+
+# Start service
+sudo service postgresql start

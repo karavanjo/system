@@ -1,0 +1,14 @@
+# from http://mariz.org/blog/2012/06/19/postgresql-and-postgis-installation-source-mac-os-x-lion/
+
+wget http://download.osgeo.org/gdal/gdal-1.9.2.tar.gz
+tar xzfp gdal-1.9.2.tar.gz
+cd gdal-1.9.2
+./configure
+make
+sudo make install
+cd ..
+
+rm -rf gdal-1.9.2
+rm gdal-1.9.2.tar.gz
+
+

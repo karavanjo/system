@@ -1,0 +1,18 @@
+# proj 4.8.0
+# from http://mariz.org/blog/2012/06/19/postgresql-and-postgis-installation-source-mac-os-x-lion/
+
+wget http://download.osgeo.org/proj/proj-4.8.0.tar.gz
+wget http://download.osgeo.org/proj/proj-datumgrid-1.5.zip
+tar xzfp proj-4.8.0.tar.gz
+
+cd proj-4.8.0/nad
+unzip ../../proj-datumgrid-1.5.zip
+cd ..
+./configure
+make
+sudo make install
+cd ..
+rm -rf proj-4.8.0
+rm proj-4.8.0.tar.gz
+rm proj-datumgrid-1.5.zip
+

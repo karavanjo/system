@@ -1,0 +1,13 @@
+# from http://mariz.org/blog/2012/06/19/postgresql-and-postgis-installation-source-mac-os-x-lion/
+
+wget  http://download.osgeo.org/geos/geos-3.4.2.tar.bz2
+tar xjfv geos-3.4.2.tar.bz2
+cd geos-3.4.2
+./configure
+make
+sudo make install
+cd ..
+
+rm -rf geos-3.4.2  
+rm geos-3.4.2.tar.bz2
+
