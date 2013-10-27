@@ -70,3 +70,11 @@ sudo update-rc.d postgresql defaults
 
 # Start service
 sudo service postgresql start
+
+# Make commands available to all users
+sudo ln -s /usr/local/pgsql/bin/* /usr/local/bin/
+
+# Make C includes and libraries available to all users:
+sudo ln -s /usr/local/pgsql/include/* /usr/local/include/
+sudo ln -s /usr/local/pgsql/lib/* /usr/local/lib/
+sudo ldconfig
