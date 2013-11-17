@@ -1,15 +1,19 @@
+#!/bin/sh
+
 sudo apt-get install libjson0 libjson0-dev libxml2-dev 
 
-wget http://download.osgeo.org/postgis/source/postgis-2.1.0.tar.gz
-tar -xvzf postgis-2.1.0.tar.gz
-cd postgis-2.1.0
+VER=2.1.1
+
+wget http://download.osgeo.org/postgis/source/postgis-$VER.tar.gz
+tar -xvzf postgis-$VER.tar.gz
+cd postgis-VER
 sudo ./configure
 sudo ./make
 sudo make install
 cd ..
 
-sudo rm -rf postgis-2.1.0 
-sudo rm postgis-2.1.0.tar.gz
+sudo rm -rf postgis-$VER
+sudo rm postgis-$VER.tar.gz
 
 sudo ln -sf /usr/share/postgresql-common/pg_wrapper /usr/local/bin/shp2pgsql
 sudo ln -sf /usr/share/postgresql-common/pg_wrapper /usr/local/bin/pgsql2shp
