@@ -6,7 +6,7 @@ VER=2.1.1
 
 wget http://download.osgeo.org/postgis/source/postgis-$VER.tar.gz
 tar -xvzf postgis-$VER.tar.gz
-cd postgis-VER
+cd postgis-$VER
 sudo ./configure
 sudo ./make
 sudo make install
