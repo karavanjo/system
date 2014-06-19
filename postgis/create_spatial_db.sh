@@ -7,8 +7,10 @@ DB_NAME=$1
 DB_USER=$2
 PATH_TO_POSTGIS=$3
 # : ${DB_USER:="postgres"}
-: ${PATH_TO_POSTGIS:="/usr/local/pgsql/share/contrib/postgis-2.0"}
+: ${PATH_TO_POSTGIS:="/usr/local/pgsql/share/contrib/postgis-2.1"}
 
+# create user --login --pwprompt
+createuser $DB_USER -P
 createdb --owner=$DB_USER --encoding=UNICODE $DB_NAME
 createlang plpgsql  $DB_NAME
 psql -d $1 -U postgres -f $PATH_TO_POSTGIS/postgis.sql
