@@ -84,6 +84,8 @@ build_apps {
 	make
 	make install
 	cd ../..
+
+	ldconfig
 }
 
 build_apps
