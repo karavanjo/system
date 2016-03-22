@@ -5,7 +5,14 @@ set -e
 # Debian 8.3
 # mapserver 7.0.1
 
-aptitude install cmake libjpeg62 libjpeg62-turbo libcurl4-dev libcurl4-dbg libpcre3 libpcre3-dev libpixman-1-0 libpixman-1-dev libsqlite3-dev libtiff5 libtiff5-dev libjpeg62-turbo-dev libpng12-0 libpng12-dev binutils libxslt1.1 libxslt1-dev libproj-dev libfribidi-bin libcairo2-dev libfcgi swig libfcgi-dev gdal-bin gdal-contrib libgdal-dev libfribidi-bin libfribidi0 libfribidi-dev apache2 apache2-dev apache2-bin libapr1 libapr1-dev libaprutil1 libaprutil1-dev memcached
+# for libapache2-mod-fastcgi
+# need to add these lines to
+# /etc/apt/sources.list
+#
+# deb http://ftp.by.debian.org/debian/ jessie non-free
+# deb-src http://ftp.by.debian.org/debian/ jessie non-free
+
+aptitude install cmake libjpeg62 libjpeg62-turbo libcurl4-dev libcurl4-dbg libpcre3 libpcre3-dev libpixman-1-0 libpixman-1-dev libsqlite3-dev libtiff5 libtiff5-dev libjpeg62-turbo-dev libpng12-0 libpng12-dev binutils libxslt1.1 libxslt1-dev libproj-dev libfribidi-bin libcairo2-dev libfcgi swig libfcgi-dev gdal-bin gdal-contrib libgdal-dev libfribidi-bin libfribidi0 libfribidi-dev apache2 apache2-dev apache2-bin libapr1 libapr1-dev libaprutil1 libaprutil1-dev memcached libapache2-mod-fastcgi
 
 build_apps {
 	mkdir -p /building
